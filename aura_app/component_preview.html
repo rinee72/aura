@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Component Showcase - 미리보기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F9FAFB;
+            color: #111827;
+            line-height: 1.5;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #111827;
+        }
+
+        /* Colors */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
+        }
+
+        .color-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            margin-bottom: 8px;
+        }
+
+        .color-name {
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        /* Typography */
+        .typography-item {
+            margin-bottom: 16px;
+        }
+
+        .typography-label {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+        }
+
+        .h1 { font-size: 32px; font-weight: bold; line-height: 1.2; }
+        .h2 { font-size: 28px; font-weight: bold; line-height: 1.3; }
+        .h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+        .h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+        .h5 { font-size: 18px; font-weight: 600; line-height: 1.4; }
+        .h6 { font-size: 16px; font-weight: 600; line-height: 1.5; }
+        .body1 { font-size: 16px; font-weight: normal; line-height: 1.5; }
+        .body2 { font-size: 14px; font-weight: normal; line-height: 1.5; }
+        .body3 { font-size: 12px; font-weight: normal; line-height: 1.5; }
+        .label { font-size: 14px; font-weight: 500; line-height: 1.4; }
+        .caption { font-size: 12px; font-weight: normal; line-height: 1.4; }
+        .button { font-size: 16px; font-weight: 600; line-height: 1.2; }
+
+        /* Spacing */
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .spacing-bar {
+            background-color: #6366F1;
+            height: 20px;
+            margin-right: 16px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: fit-content;
+        }
+
+        .btn-primary {
+            background-color: #6366F1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #4F46E5;
+        }
+
+        .btn-secondary {
+            background-color: #F59E0B;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #D97706;
+        }
+
+        .btn-outlined {
+            background-color: transparent;
+            color: #6366F1;
+            border: 2px solid #6366F1;
+        }
+
+        .btn-outlined:hover {
+            background-color: #E0E7FF;
+        }
+
+        .btn-text {
+            background-color: transparent;
+            color: #6366F1;
+            padding: 12px 16px;
+        }
+
+        .btn-text:hover {
+            background-color: #F3F4F6;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        /* Text Fields */
+        .text-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .text-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-field-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .text-field-input {
+            padding: 12px 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .text-field-input:focus {
+            outline: none;
+            border-color: #6366F1;
+        }
+
+        .text-field-input:disabled {
+            background-color: #F3F4F6;
+            cursor: not-allowed;
+        }
+
+        .text-field-error {
+            border-color: #EF4444;
+        }
+
+        .text-field-error-message {
+            font-size: 12px;
+            color: #EF4444;
+            margin-top: 4px;
+        }
+
+        /* Cards */
+        .card-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        /* Loading */
+        .loading-group {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 3px solid #E5E7EB;
+            border-top: 3px solid #6366F1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-message {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 8px;
+        }
+
+        /* Error */
+        .error-group {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .error-box {
+            background-color: #FEE2E2;
+            border: 1px solid #EF4444;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .error-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #EF4444;
+            margin-bottom: 8px;
+        }
+
+        .error-message {
+            font-size: 14px;
+            color: #991B1B;
+        }
+
+        .error-retry {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background-color: #EF4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .error-retry:hover {
+            background-color: #DC2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AURA Component Showcase</h1>
+        <p class="subtitle">디자인 시스템 컴포넌트 미리보기</p>
+
+        <!-- Colors Section -->
+        <div class="section">
+            <h2 class="section-title">Colors</h2>
+            <div class="color-grid">
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #6366F1;"></div>
+                    <div class="color-name">Primary</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #F59E0B;"></div>
+                    <div class="color-name">Secondary</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #EF4444;"></div>
+                    <div class="color-name">Error</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #10B981;"></div>
+                    <div class="color-name">Success</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #F59E0B;"></div>
+                    <div class="color-name">Warning</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #3B82F6;"></div>
+                    <div class="color-name">Info</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #F9FAFB;"></div>
+                    <div class="color-name">Background</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch" style="background-color: #FFFFFF; border: 1px solid #E5E7EB;"></div>
+                    <div class="color-name">Surface</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography Section -->
+        <div class="section">
+            <h2 class="section-title">Typography</h2>
+            <div class="typography-item">
+                <div class="typography-label">Heading 1</div>
+                <div class="h1">Heading 1</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Heading 2</div>
+                <div class="h2">Heading 2</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Heading 3</div>
+                <div class="h3">Heading 3</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Heading 4</div>
+                <div class="h4">Heading 4</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Heading 5</div>
+                <div class="h5">Heading 5</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Heading 6</div>
+                <div class="h6">Heading 6</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Body 1</div>
+                <div class="body1">Body 1 - 기본 본문 텍스트</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Body 2</div>
+                <div class="body2">Body 2 - 작은 본문 텍스트</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Body 3</div>
+                <div class="body3">Body 3 - 더 작은 본문 텍스트</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Label</div>
+                <div class="label">Label</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Caption</div>
+                <div class="caption">Caption</div>
+            </div>
+            <div class="typography-item">
+                <div class="typography-label">Button</div>
+                <div class="button">Button Text</div>
+            </div>
+        </div>
+
+        <!-- Spacing Section -->
+        <div class="section">
+            <h2 class="section-title">Spacing</h2>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 4px;"></div>
+                <span>XS: 4px</span>
+            </div>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 8px;"></div>
+                <span>SM: 8px</span>
+            </div>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 16px;"></div>
+                <span>MD: 16px</span>
+            </div>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 24px;"></div>
+                <span>LG: 24px</span>
+            </div>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 32px;"></div>
+                <span>XL: 32px</span>
+            </div>
+            <div class="spacing-item">
+                <div class="spacing-bar" style="width: 48px;"></div>
+                <span>XXL: 48px</span>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="section">
+            <h2 class="section-title">Buttons</h2>
+            <div class="button-group">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-outlined">Outlined Button</button>
+                <button class="btn btn-text">Text Button</button>
+                <button class="btn btn-primary" disabled>Disabled Button</button>
+                <button class="btn btn-primary btn-full">Full Width Button</button>
+                <button class="btn btn-primary btn-small">Small Button</button>
+                <button class="btn btn-primary btn-large">Large Button</button>
+            </div>
+        </div>
+
+        <!-- Text Fields Section -->
+        <div class="section">
+            <h2 class="section-title">Text Fields</h2>
+            <div class="text-field-group">
+                <div class="text-field">
+                    <label class="text-field-label">Label</label>
+                    <input type="text" class="text-field-input" placeholder="Placeholder text">
+                </div>
+                <div class="text-field">
+                    <label class="text-field-label">With Prefix Icon</label>
+                    <input type="text" class="text-field-input" placeholder="Search...">
+                </div>
+                <div class="text-field">
+                    <label class="text-field-label">With Suffix Icon</label>
+                    <input type="password" class="text-field-input" placeholder="Password">
+                </div>
+                <div class="text-field">
+                    <label class="text-field-label">Multi-line</label>
+                    <textarea class="text-field-input" rows="3" placeholder="Enter multiple lines..."></textarea>
+                </div>
+                <div class="text-field">
+                    <label class="text-field-label">With Error</label>
+                    <input type="text" class="text-field-input text-field-error" placeholder="Invalid input">
+                    <div class="text-field-error-message">This field is required</div>
+                </div>
+                <div class="text-field">
+                    <label class="text-field-label">Disabled</label>
+                    <input type="text" class="text-field-input" placeholder="Cannot edit" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Section -->
+        <div class="section">
+            <h2 class="section-title">Cards</h2>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-content">Basic Card</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Card with Title</div>
+                    <div class="card-content">This is a card with custom content.</div>
+                </div>
+                <div class="card" style="cursor: pointer;">
+                    <div class="card-content">Tappable Card (hover to see effect)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div class="section">
+            <h2 class="section-title">Loading</h2>
+            <div class="loading-group">
+                <div>
+                    <div class="spinner"></div>
+                </div>
+                <div>
+                    <div class="spinner"></div>
+                    <div class="loading-message">Loading...</div>
+                </div>
+                <div>
+                    <div class="spinner" style="width: 32px; height: 32px; border-width: 2px;"></div>
+                    <div class="loading-message">Please wait</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div class="section">
+            <h2 class="section-title">Error</h2>
+            <div class="error-group">
+                <div class="error-box">
+                    <div class="error-message">Something went wrong. Please try again.</div>
+                </div>
+                <div class="error-box">
+                    <div class="error-title">Connection Error</div>
+                    <div class="error-message">Unable to connect to the server.</div>
+                    <button class="error-retry">Retry</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

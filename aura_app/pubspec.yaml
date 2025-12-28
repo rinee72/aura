@@ -1,0 +1,50 @@
+name: aura_app
+description: AURA - 셀럽-팬 소통 플랫폼
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # 필수 의존성 (WP-0.1 요구사항)
+  supabase_flutter: ^2.3.0
+  go_router: ^13.0.0
+  provider: ^6.1.1
+  flutter_dotenv: ^5.1.0
+  
+  # 이미지 선택 (WP-3.4: 셀럽 프로필 관리)
+  image_picker: ^1.0.7
+  
+  # PDF 생성 (WP-4.5: 리포트 및 통계)
+  pdf: ^3.10.7
+  printing: ^5.12.0
+  path_provider: ^2.1.1
+  share_plus: ^7.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # 환경 변수 파일을 assets에 포함
+  # 주의: .env 파일은 .gitignore에 포함되어 있으므로
+  # CI에서는 .env.example만 확인합니다.
+  # 로컬 개발 시에는 .env.example을 복사하여 .env 파일을 생성하세요.
+  # WP-0.4: 환경별 설정 파일 추가
+  assets:
+    - .env
+    - .env.example
+    - .env.development
+    - .env.development.example
+    - .env.staging
+    - .env.staging.example
+    - .env.production
+    - .env.production.example
+

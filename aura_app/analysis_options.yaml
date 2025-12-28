@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    # 프로젝트에 포함된 Flutter SDK/소스 트리는 앱 분석 대상이 아님
+    - flutter/**
+    # 생성물/캐시
+    - build/**
+    - .dart_tool/**
+    - ios/Flutter/ephemeral/**
+    - android/.gradle/**
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_print: false
+
