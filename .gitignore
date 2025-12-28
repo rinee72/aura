@@ -79,3 +79,6 @@ logs/
 *.tmp
 *.temp
 
+# Flutter SDK (should not be in repository)
+aura_app/flutter/
+
